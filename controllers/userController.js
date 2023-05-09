@@ -53,11 +53,13 @@ const addRemoveFriend = async (req, res) => {
 		const friend = await User.findById(friendId);
 
 		if (!user) {
-			res.status(404).json({ message: "User not found!" });
+			return res.status(404).json({ message: "User not found!" });
 		}
 
 		if (id === friendId) {
-			res.status(400).json({ message: "You cannot add yourself as a friend!" });
+			return res
+				.status(400)
+				.json({ message: "You cannot add yourself as a friend!" });
 		}
 
 		if (user.friends.includes(friendId)) {
