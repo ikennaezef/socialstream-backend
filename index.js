@@ -8,7 +8,7 @@ import morgan from "morgan";
 import path from "path";
 import { fileURLToPath } from "url";
 import { authRouter } from "./routes/authRoute.js";
-import { verifyToken } from "./middleware/auth.js";
+import { userRouter } from "./routes/userRoutes.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -25,6 +25,7 @@ app.use(cors());
 app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 
 app.use("/api/auth", authRouter);
+app.use("/api/users", userRouter);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
