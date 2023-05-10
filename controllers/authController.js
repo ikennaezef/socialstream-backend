@@ -57,7 +57,17 @@ const registerUser = async (req, res) => {
 			return res.status(400).json({ message: "User not created!" });
 		}
 
-		res.status(201).json(newUser);
+		const returnedUser = {
+			id: newUser.id,
+			email: newUser.email,
+			firstName: newUser.firstName,
+			lastName: newUser.lastName,
+			location: newUser.location,
+			occupation: newUser.occupation,
+			friends: newUser.friends,
+		};
+
+		res.status(201).json(returnedUser);
 	} catch (error) {
 		res.status(500).json({ message: "An error occured" });
 	}
