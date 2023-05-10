@@ -96,7 +96,16 @@ const loginUser = async (req, res) => {
 		}
 
 		const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET);
-		res.status(200).json({ token, userID: user.id });
+		const returnedUser = {
+			id: user.id,
+			email: user.email,
+			firstName: user.firstName,
+			lastName: user.lastName,
+			location: user.location,
+			occupation: user.occupation,
+			friends: user.friends,
+		};
+		res.status(200).json({ token, user: returnedUser });
 	} catch (error) {
 		res.status(500).json({ message: "An error occured" });
 	}
