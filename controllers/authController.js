@@ -101,6 +101,7 @@ const loginUser = async (req, res) => {
 			email: user.email,
 			firstName: user.firstName,
 			lastName: user.lastName,
+			picturePath: user.picturePath,
 			location: user.location,
 			occupation: user.occupation,
 			friends: user.friends,
