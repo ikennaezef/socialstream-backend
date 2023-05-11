@@ -74,7 +74,7 @@ const likePost = async (req, res) => {
 //@access private
 const createPost = async (req, res) => {
 	try {
-		const { userId, description, picturePath } = req.body;
+		const { userId, description } = req.body;
 		const user = await User.findById(userId);
 
 		if (!user) {
@@ -88,7 +88,7 @@ const createPost = async (req, res) => {
 			location: user.location,
 			description,
 			userPicturePath: user.picturePath,
-			picturePath,
+			picturePath: req.imageURL ? req.imageURL : null,
 			likes: {},
 			comments: [],
 		});
