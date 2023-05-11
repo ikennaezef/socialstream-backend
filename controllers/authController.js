@@ -31,6 +31,14 @@ const registerUser = async (req, res) => {
 				.json({ message: "Some required fields are empty!" });
 		}
 
+		
+		let userImage;
+		if (!picturePath) {
+			userImage = process.env.DEFAULT_PFP;
+		} else {
+			userImage = req.imageURL;
+		}
+
 		const duplicateUser = await User.findOne({ email });
 		if (duplicateUser) {
 			return res
@@ -45,7 +53,7 @@ const registerUser = async (req, res) => {
 			lastName,
 			email,
 			password: hashedPassword,
-			picturePath,
+			picturePath: userImage,
 			friends,
 			location,
 			occupation,

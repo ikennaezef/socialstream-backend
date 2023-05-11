@@ -10,6 +10,8 @@ import { fileURLToPath } from "url";
 import { authRouter } from "./routes/authRoute.js";
 import { userRouter } from "./routes/userRoutes.js";
 import { postRouter } from "./routes/postRoutes.js";
+import { uploadImage } from "./middleware/imageUpload.js";
+import multer from "multer";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -28,6 +30,10 @@ app.use("/assets", express.static(path.join(__dirname, "public/assets")));
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
 app.use("/api/posts", postRouter);
+
+const upload = multer({ storage: multer.memoryStorage() });
+
+app.post("/api/upload", upload.single("filename"), uploadImage);
 
 // MONGOOSE SETUP
 const PORT = process.env.PORT || 6001;
