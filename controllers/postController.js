@@ -70,7 +70,7 @@ const likePost = async (req, res) => {
 };
 
 //@desc Comment on a post
-//@route PATCH /api/posts/:id/comment
+//@route POST /api/posts/:id/comment
 //@access private
 const postComment = async (req, res) => {
 	try {
