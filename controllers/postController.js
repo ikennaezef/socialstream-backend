@@ -69,6 +69,29 @@ const likePost = async (req, res) => {
 	}
 };
 
+//@desc Comment on a post
+//@route PATCH /api/posts/:id/comment
+//@access private
+const postComment = async (req, res) => {
+	try {
+		const { id } = req.params;
+		const { text } = req.body;
+
+		const post = await Post.findById(id);
+		post.comments.push(text);
+
+		const updatedPost = await post.save();
+
+		if (!updatedPost) {
+			return res.status(400).json({ message: "An error occured!" });
+		}
+
+		res.status(200).json(updatedPost);
+	} catch (error) {
+		return res.status(409).json({ message: error.message });
+	}
+};
+
 //@desc Create a post
 //@route POST /api/posts
 //@access private
@@ -129,4 +152,11 @@ const deletePost = async (req, res) => {
 	}
 };
 
-export { getFeedPosts, getUserPosts, likePost, createPost, deletePost };
+export {
+	getFeedPosts,
+	getUserPosts,
+	likePost,
+	createPost,
+	deletePost,
+	postComment,
+};

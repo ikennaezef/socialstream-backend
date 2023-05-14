@@ -5,6 +5,7 @@ import {
 	getFeedPosts,
 	getUserPosts,
 	likePost,
+	postComment,
 } from "../controllers/postController.js";
 import { verifyToken } from "../middleware/auth.js";
 import { upload2, uploadImage } from "../middleware/imageUpload.js";
@@ -19,6 +20,7 @@ router.get("/:id/posts", getUserPosts);
 router.post("/", upload2.single("picture"), uploadImage, createPost);
 
 router.patch("/:id/like", likePost);
+router.post("/:id/comment", postComment);
 router.delete("/:id/delete", deletePost);
 
 export { router as postRouter };
