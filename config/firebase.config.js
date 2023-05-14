@@ -4,12 +4,12 @@ dotenv.config();
 
 export default {
 	firebaseConfig: {
-		apiKey: "AIzaSyBqeKqHql4kJ7lwVF-Yq2kBO5hLZiBL_iU",
-		authDomain: "socialstream-ba300.firebaseapp.com",
-		projectId: "socialstream-ba300",
-		storageBucket: "socialstream-ba300.appspot.com",
-		messagingSenderId: "777642803175",
-		appId: "1:777642803175:web:5d43af59c0c52c90698742",
-		measurementId: "G-7FQGPQ592T",
+		apiKey: process.env.FIREBASE_API_KEY,
+		authDomain: process.env.FIREBASE_AUTH_DOMAIN,
+		projectId: process.env.FIREBASE_PROJECT_ID,
+		storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
+		messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
+		appId: process.env.FIREBASE_APP_ID,
+		measurementId: process.env.FIREBASE_MEASUREMENT_ID,
 	},
 };
