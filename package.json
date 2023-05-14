@@ -1,15 +1,14 @@
 {
-	"name": "server",
+	"name": "socialstream_backend",
 	"version": "1.0.0",
-	"description": "",
+	"description": "Backend For the SociaStream App",
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
 		"dev": "nodemon index.js"
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Ikenna Eze",
 	"license": "ISC",
 	"devDependencies": {
 		"nodemon": "^2.0.22"
