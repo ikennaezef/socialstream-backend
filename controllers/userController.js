@@ -60,6 +60,10 @@ const addRemoveFriend = async (req, res) => {
 			return res.status(404).json({ message: "User not found!" });
 		}
 
+		if (!friend) {
+			return res.status(404).json({ message: "User not found!" });
+		}
+
 		if (id === friendId) {
 			return res
 				.status(400)
