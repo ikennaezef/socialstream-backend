@@ -28,18 +28,22 @@ const getUserFriends = async (req, res) => {
 		}
 
 		const friends = await Promise.all(
-			user.friends.map((id) => User.findById(id))
+			user.friends.map((id) =>
+				User.findById(id, {
+					password: 0,
+					friends: 0,
+					email: 0,
+					viewedProfile: 0,
+					impressions: 0,
+					createdAt: 0,
+					updatedAt: 0,
+				})
+			)
 		);
 
-		const formattedFriends = friends.map(
-			({ _id, firstName, lastName, occupation, location, picturePath }) => {
-				return { _id, firstName, lastName, occupation, location, picturePath };
-			}
-		);
-
-		res.status(200).json(formattedFriends);
+		res.status(200).json(friends);
 	} catch (error) {
-		return res.status(400).json({ message: "An error occured" });
+		return res.status(400).json({ message: error.message });
 	}
 };
 
